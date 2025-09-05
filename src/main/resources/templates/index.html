@@ -50,6 +50,18 @@
           gap: var(--wa-spacing-3);
           width: 100%;
           max-width: 400px;
+          align-items: center;      /* vertical alignment of items in each row */
+          justify-items: center;    /* horizontal centering of items in each column */
+          margin: 0 auto;           /* center form within its container */
+        }
+
+        .form-section {
+          align-self: center;       /* center the section in the stack */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
         }
 
         /* Do not stretch input; keep a readable minimum width */
@@ -142,7 +154,7 @@
             </wa-button>
 
             <!-- Add Product Form -->
-            <div>
+            <div class="form-section">
                 <h3>Add New Product</h3>
                 <form hx-post="/products"
                       hx-target="#product-table-container tbody"
