@@ -23,7 +23,7 @@ class ProductController(
     @GetMapping("/products", produces = ["text/html"])
     fun loadProductsFragment(model: Model): String {
         model.addAttribute("products", repository.findAll())
-        return "index :: productTable"
+        return "table :: productTable"
     }
 
     // HTMX: Add new product → return only the new row
@@ -38,6 +38,6 @@ class ProductController(
             productTitle
         )
         model.addAttribute("product", saved)
-        return "index :: productRow"
+        return "table :: productRow"
     }
 }

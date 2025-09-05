@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Product Manager</title>
 
     <!-- Web Awesome -->
-    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/styles/webawesome.css" />
+    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/styles/webawesome.css"/>
     <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/webawesome.loader.js"></script>
 
     <!-- HTMX -->
@@ -69,9 +69,9 @@
                 hx-target="#product-table-container"
                 hx-swap="innerHTML"
         >
-      <span class="wa-left">
-        <wa-icon name="download"></wa-icon>
-      </span>
+            <span class="wa-left">
+            <wa-icon name="download"></wa-icon>
+            </span>
             Load Products
         </wa-button>
 
@@ -84,7 +84,7 @@
                   style="display: grid; gap: var(--wa-spacing-3); max-width: 400px;">
 
                 <wa-form-field label="Title">
-                    <wa-input type="text" name="title" required="true" />
+                    <wa-input type="text" name="title" required="true"></wa-input>
                 </wa-form-field>
 
                 <wa-button type="submit" variant="success" size="medium">
@@ -106,29 +106,8 @@
     </wa-card>
 </div>
 
-<!-- Product Table Fragment -->
-<div th:fragment="productTable">
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-        </tr>
-        </thead>
-        <tbody id="product-table">
-        <tr th:each="product : ${products}">
-            <td th:text="${product.id}">1</td>
-            <td><strong th:text="${product.title}">Product Title</strong></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<!-- Single Product Row (for HTMX append) -->
-<tr th:fragment="productRow" th:if="${product != null}" th:with="p=${product}">
-    <td th:text="${p?.id ?: 'N/A'}">1</td>
-    <td><strong th:text="${p?.title ?: 'Unknown'}">Product Title</strong></td>
-</tr>
+<!-- Product fragments: hidden on full page, rendered for HTMX requests -->
+<!-- Fragments moved to table.html to avoid full page render issues -->
 
 </body>
 </html>

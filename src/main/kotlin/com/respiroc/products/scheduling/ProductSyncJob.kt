@@ -14,7 +14,7 @@ class ProductSyncJob(
     private val productClient: ProductClient
 ) {
 
-    @Scheduled(fixedRate = 60_000, initialDelay = 0)
+    @Scheduled(fixedRate = 600_000, initialDelay = 0)
     @Transactional
     fun syncProducts() {
         println("📡 Fetching products from remote")
