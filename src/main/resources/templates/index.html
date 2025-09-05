@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Product Manager</title>
 
-    <!-- Web Awesome Components -->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@web-awesome/components@latest/dist/web-awesome/web-awesome.esm.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@web-awesome/styles@latest/web-awesome.min.css" />
+    <!-- Web Awesome -->
+    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/styles/webawesome.css" />
+    <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-beta.4/dist/webawesome.loader.js"></script>
 
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js"></script>
@@ -65,7 +65,7 @@
         <wa-button
                 variant="primary"
                 size="large"
-                hx-get="@{/products}"
+                hx-get="/products"
                 hx-target="#product-table-container"
                 hx-swap="innerHTML"
         >
@@ -78,14 +78,13 @@
         <!-- Add Product Form -->
         <div style="margin-top: var(--spacing-lg);">
             <h3>Add New Product</h3>
-            <form th:object="${newProduct}"
-                  hx-post="@{/products}"
+            <form hx-post="/products"
                   hx-target="#product-table-container tbody"
                   hx-swap="beforeend"
                   style="display: grid; gap: var(--wa-spacing-3); max-width: 400px;">
 
                 <wa-form-field label="Title">
-                    <wa-input type="text" th:field="*{title}" required="true" />
+                    <wa-input type="text" name="title" required="true" />
                 </wa-form-field>
 
                 <wa-button type="submit" variant="success" size="medium">
