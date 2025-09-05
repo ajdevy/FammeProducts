@@ -11,7 +11,7 @@ import java.sql.ResultSet
 class ProductRepository(private val jdbcClient: JdbcClient) {
 
     fun findAll(): List<Product> =
-        jdbcClient.sql("SELECT product_id, title FROM products ORDER BY id")
+        jdbcClient.sql("SELECT product_id, title FROM products ORDER BY id DESC")
             .query { resultSet, _ ->
                 resultSet.toProduct()
             }
