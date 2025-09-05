@@ -31,13 +31,35 @@
 
         .container {
           max-width: 800px;
+          min-width: 500px;
           margin: 0 auto;
+        }
+
+        .center-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: var(--spacing-lg);
+        }
+
+        .product-form {
+          display: grid;
+          gap: var(--wa-spacing-3);
+          width: 100%;
+          max-width: 400px;
+        }
+
+        .table-container {
+          width: 100%;
         }
 
         table {
           width: 100%;
           border-collapse: collapse;
           margin-top: var(--spacing-md);
+          margin-left: auto;
+          margin-right: auto;
         }
 
         th {
@@ -57,9 +79,9 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container center-content">
 
-    <wa-card heading="Product List">
+    <wa-card heading="Product List" appearance="outlined">
 
         <!-- Load Products Button -->
         <wa-button
@@ -69,35 +91,35 @@
                 hx-target="#product-table-container"
                 hx-swap="innerHTML"
         >
-            <span class="wa-left">
-            <wa-icon name="download"></wa-icon>
+            <span slot="start">
+                <wa-icon name="download"></wa-icon>
             </span>
             Load Products
         </wa-button>
 
         <!-- Add Product Form -->
-        <div style="margin-top: var(--spacing-lg);">
+        <div>
             <h3>Add New Product</h3>
             <form hx-post="/products"
                   hx-target="#product-table-container tbody"
-                  hx-swap="beforeend"
-                  style="display: grid; gap: var(--wa-spacing-3); max-width: 400px;">
+                  hx-swap="afterbegin"
+                  class="product-form">
 
                 <wa-form-field label="Title">
                     <wa-input type="text" name="title" required="true"></wa-input>
                 </wa-form-field>
 
                 <wa-button type="submit" variant="success" size="medium">
-          <span class="wa-left">
-            <wa-icon name="plus"></wa-icon>
-          </span>
+                    <span slot="start">
+                        <wa-icon name="plus"></wa-icon>
+                    </span>
                     Add Product
                 </wa-button>
             </form>
         </div>
 
         <!-- Table Container -->
-        <div id="product-table-container" style="margin-top: var(--spacing-lg);">
+        <div id="product-table-container" class="table-container">
             <p style="color: var(--wa-color-gray-500);">
                 Click "Load Products" to display data.
             </p>
